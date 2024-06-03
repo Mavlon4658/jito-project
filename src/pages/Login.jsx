@@ -33,10 +33,10 @@ export default function Login() {
                     value={password}
                     onChange={e => handleInput(e.target.value)}
                     autoComplete="off"
-                    className={`w-full bg-dark-blue-1000 outline-none font-raleway text-[28px] font-semibold text-center ${error ? 'bg-danger-500' : ''}`}
+                    className={`w-full outline-none font-raleway text-[28px] font-semibold text-center ${error ? 'bg-danger-500' : 'bg-dark-blue-1000'}`}
                 />
                 {
-                    error ? <p className="text-danger-400">Error info text.</p> : ''
+                    error ? <p className="text-danger-400 mt-[10px] text-lg font-semibold">Error info text.</p> : ''
                 }
                 <ButtonBlue className="mt-3 text-base w-full">Login</ButtonBlue>
             </div>
