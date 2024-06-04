@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import IMG from "../assets";
-import ButtonBlue from "../components/ButtonBlue";
+import Button from "../components/Button";
 
 export default function Login() {
     const [password, setPassword] = useState('');
@@ -38,7 +38,7 @@ export default function Login() {
                 {
                     error ? <p className="text-danger-400 mt-[10px] text-lg font-semibold">Error info text.</p> : ''
                 }
-                <ButtonBlue className="mt-3 text-base w-full">Login</ButtonBlue>
+                <Button className="mt-3 text-base w-full" color="blue">Login</Button>
             </div>
         </div>
     </>)

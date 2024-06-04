@@ -1,10 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Container from '../components/Container'
 import IMG from '../assets'
-import ButtonGray from '../components/ButtonGray'
-import ButtonGreen from '../components/ButtonGreen'
-import ButtonRed from '../components/ButtonRed'
-import ButtonBlue from '../components/ButtonBlue'
+import Button from '../components/Button'
 import classNames from "classnames"
 
 function Home() {
@@ -33,6 +30,11 @@ function Home() {
             { 'border-l-[3px] border-solid bg-danger-30 border-l-danger-300': tableItem.className == 'red' }
         )
     }
+
+    useEffect(() => {
+        let el = document.querySelector('body');
+        swapModal ? el.style.overflow = 'hidden' : el.style.overflow = 'visible';
+    }, [swapModal])
 
     return (
         <div className='font-jost pb-[43px]'>
@@ -146,21 +148,21 @@ function Home() {
                         <span className='text-light-blue-100'>$</span> 0.0000159223955
                     </p>
                     <div className='flex items-center gap-2'>
-                        <ButtonGray className="w-[calc((50%_-_4px)_/_2_-_4px)] shrink-0">+</ButtonGray>
-                        <ButtonGray className="w-[calc((50%_-_4px)_/_2_-_4px)] shrink-0">-</ButtonGray>
-                        <ButtonGray className="w-full">S</ButtonGray>
+                        <Button className="w-[calc((50%_-_4px)_/_2_-_4px)] shrink-0" color="gray">+</Button>
+                        <Button className="w-[calc((50%_-_4px)_/_2_-_4px)] shrink-0" color="gray">-</Button>
+                        <Button className="w-full" color="gray">S</Button>
                     </div>
                     <div className='my-2 flex items-start gap-2'>
-                        <ButtonGreen className="w-full">Buy 1.250</ButtonGreen>
-                        <ButtonGreen className="w-full">Buy 2.500</ButtonGreen>
+                        <Button className="w-full" color="green">Buy 1.250</Button>
+                        <Button className="w-full" color="green">Buy 2.500</Button>
                     </div>
                     <div className='mb-2 flex gap-2'>
-                        <ButtonRed className="w-full">25</ButtonRed>
-                        <ButtonRed className="w-full">50</ButtonRed>
-                        <ButtonRed className="w-full">75</ButtonRed>
-                        <ButtonRed className="w-full">100</ButtonRed>
+                        <Button className="w-full" color="red">25</Button>
+                        <Button className="w-full" color="red">50</Button>
+                        <Button className="w-full" color="red">75</Button>
+                        <Button className="w-full" color="red">100</Button>
                     </div>
-                    <ButtonBlue className="w-full">Buy</ButtonBlue>
+                    <Button className="w-full" color="blue">Buy</Button>
                 </div>
             </Container>
             <Container className="bg-dark-blue-100 rounded-[2px] flex flex-col gap-1 overflow-hidden">
@@ -183,7 +185,8 @@ function Home() {
             {
                 swapModal &&
                 <div className='fixed flex items-center justify-center top-0 left-0 w-full h-full bg-light-blue-400'>
-                    <div className='w-[434px] pb-[30px] pt-[23px] px-[30px] bg-dark-blue-100'>
+                    <div className='absolute left-0 top-0 w-full h-full bg-transparent' onClick={() => {setSwapModal(false)}}></div>
+                    <div className='relative w-[434px] pb-[30px] pt-[23px] px-[30px] bg-dark-blue-100'>
                         <div className='flex justify-end mb-5'>
                             <button onClick={() => { setSwapModal(false) }}>
                                 <img src={IMG.times} alt="" />
@@ -209,9 +212,9 @@ function Home() {
                                 <span>0.69</span>
                             </p>
                         </div>
-                        <ButtonBlue className="h-[61px] w-full">
+                        <Button className="h-[61px] w-full" color="blue">
                             Swap
-                        </ButtonBlue>
+                        </Button>
                     </div>
                 </div>
             }
